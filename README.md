@@ -36,15 +36,14 @@ Things you may want to cover:
 | last_name_kana     | string | null: false |
 | birthday           | date   | null: false |
 
-has_many :item
-has_many :shopping records
+has_many :items
+has_many :shopping_records
 
 
 
 ## items テーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| item_images        | string | null: false |
 | item_name          | string | null: false |
 | item_information   | text   | null: false |
 | item_type_id       | integer | null: false |
@@ -52,34 +51,32 @@ has_many :shopping records
 | shipping_cost_id   | integer | null: false |
 | area_of_origin_id  | integer | null: false |
 | days_to_ship_id    | integer | null: false |
-| price_id           | integer | null: false |
+| price              | integer | null: false |
 | user               | references | null: false, foreign_key: true |
 
 belongs_to :user
 
 
-## shopping Records テーブル
+## shopping_records テーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| credit_card        | string | null: false |
-| effective_date     | string | null: false |
-| security_code      | string | null: false |
 | user               | references | null: false, foreign_key: true |
 | item               | references | null: false, foreign_key: true |
 
-belongs_to :users
-belongs_to :Shopping informations
+belongs_to :user
+has_many :shopping_informations
 
 
-## shopping informations テーブル
+## shopping_informations テーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | postal_code        | string | null: false |
 | prefectures        | string | null: false |
 | municipalities     | string | null: false |
 | street_address     | string | null: false |
-| building_name      | string | null: false |
+| building_name      | string | unique: true |
 | phone_number       | string | null: false |
+| user               | references | null: false, foreign_key: true |
+| item               | references | null: false, foreign_key: true |
 
-has_one :Shopping Records
-belongs_to :users
+belongs_to :shopping_record
