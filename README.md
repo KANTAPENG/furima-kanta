@@ -49,7 +49,7 @@ has_many :shopping_records
 | item_type_id       | integer | null: false |
 | item_condition_id  | integer | null: false |
 | shipping_cost_id   | integer | null: false |
-| area_of_origin_id  | integer | null: false |
+| prefecture_id      | integer | null: false |
 | days_to_ship_id    | integer | null: false |
 | price              | integer | null: false |
 | user               | references | null: false, foreign_key: true |
@@ -73,7 +73,7 @@ belongs_to :item
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | postal_code        | string | null: false |
-| prefectures_id     | integer | null: false |
+| prefecture_id      | integer | null: false |
 | municipality       | string | null: false |
 | street_address     | string | null: false |
 | building_name      | string |             |
