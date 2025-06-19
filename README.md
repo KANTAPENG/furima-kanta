@@ -55,6 +55,7 @@ has_many :shopping_records
 | user               | references | null: false, foreign_key: true |
 
 belongs_to :user
+has_one :shopping_record
 
 
 ## shopping_records テーブル
@@ -64,19 +65,19 @@ belongs_to :user
 | item               | references | null: false, foreign_key: true |
 
 belongs_to :user
-has_many :shopping_informations
+has_one :shopping_information
+belongs_to :item
 
 
 ## shopping_informations テーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | postal_code        | string | null: false |
-| prefectures        | string | null: false |
-| municipalities     | string | null: false |
+| prefectures_id     | integer | null: false |
+| municipality       | string | null: false |
 | street_address     | string | null: false |
-| building_name      | string | unique: true |
+| building_name      | string |             |
 | phone_number       | string | null: false |
-| user               | references | null: false, foreign_key: true |
-| item               | references | null: false, foreign_key: true |
+| shopping_record    | references | null: false, foreign_key: true |
 
 belongs_to :shopping_record
