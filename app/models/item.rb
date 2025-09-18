@@ -4,6 +4,10 @@ class Item < ApplicationRecord
   belongs_to :item_type
   belongs_to :item_condition
   has_one_attached :image
+  belongs_to :shipping_cost
+  belongs_to :prefecture
+  belongs_to :days_to_ship
+  #has_one :shopping_record
 
   validates :item_name, presence: true
   validates :item_information, presence: true
