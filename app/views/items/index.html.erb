@@ -102,6 +102,7 @@
               <div class='item-info'>
                 <h3 class='item-name'><%= item.item_name %></h3>
                 <div class='item-price'>
+                  <span><%= number_with_delimiter(item.price) %>円<br><%= item.shipping_cost.name %></span>
                   <div class='star-btn'>
                     <%= image_tag "star.png", class:"star-icon" %>
                     <span class='star-count'>0</span>
