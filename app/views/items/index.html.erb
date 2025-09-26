@@ -84,7 +84,7 @@
       <% if @items.present? %>
         <% @items.each do |item| %>
           <li class='list'>
-            <%= link_to item_path(item) do %>
+            <%= link_to '#' do %>
               <div class='item-img-content' style="position:relative;">
                 <% if item.image.attached? %>
                   <%= image_tag item.image, alt: item.item_name, class: "item-img" %>
@@ -92,17 +92,16 @@
                   <%= image_tag "no_image.png", alt: "no image", class: "item-img" %>
                 <% end %>
 
-                <% if item.shopping_record.present? %>
-                  <div class='sold-out' style="position:absolute; left:0; top:0;">
-                    <span>Sold Out!!</span>
-                  </div>
-                <% end %>
+                <%# if item.shopping_record.present? %>
+                  <%# <div class='sold-out' style="position:absolute; left:0; top:0;"> %>
+                  <%#   <span>Sold Out!!</span> %>
+                  <%# </div> %>
+                <%# end %>
               </div>
 
               <div class='item-info'>
                 <h3 class='item-name'><%= item.item_name %></h3>
                 <div class='item-price'>
-                  <span><%= number_with_delimiter(item.price) %>円<br><%= item.shipping_cost&.name || '配送料不明' %></span>
                   <div class='star-btn'>
                     <%= image_tag "star.png", class:"star-icon" %>
                     <span class='star-count'>0</span>
