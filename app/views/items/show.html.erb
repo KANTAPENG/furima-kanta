@@ -8,11 +8,7 @@
     </h2>
 
     <div class="item-img-content" style="position: relative;">
-      <% if @item.image.attached? %>
-        <%= image_tag @item.image, alt: @item.item_name, class: "item-box-img" %>
-      <% else %>
-        <%= image_tag "no_image.png", alt: "no image", class: "item-box-img" %>
-      <% end %>
+      <%= image_tag @item.image, alt: @item.item_name, class: "item-box-img" %>
 
       <%# 商品が売れている場合は、sold outを表示しましょう %>
       <div class="sold-out">
@@ -30,7 +26,7 @@
       </span>
     </div>
 
-    <% if user_signed_in? && @item.shopping_record.blank? %>
+    <% if user_signed_in? %>
       <% if current_user == @item.user %>
         <%= link_to "商品の編集", "#", class: "item-red-btn" %>
         <p class="or-text">or</p>
@@ -50,27 +46,26 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= "出品者名" %></td>
+          <td class="detail-value"><%= @item.user.try(:nickname).presence || @item.user.try(:email) %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= "カテゴリー名" %></td>
+          <td class="detail-value"><%= @item.item_type.name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= "商品の状態" %></td>
-        </tr>
+          <td class="detail-value"><%= @item.item_condition.name %></td>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= "発送料の負担" %></td>
+          <td class="detail-value"><%= @item.shipping_cost.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= "発送元の地域" %></td>
+          <td class="detail-value"><%= @item.prefecture.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= "発送日の目安" %></td>
+          <td class="detail-value"><%= @item.days_to_ship.name %></td>
         </tr>
       </tbody>
     </table>
@@ -110,7 +105,7 @@
     </a>
   </div>
   <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href="#" class="another-item"><%= "商品のカテゴリー名" %>をもっと見る</a>
+  <a href="#" class="another-item"><%= @item.item_type.name %>をもっと見る</a>
   <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
 </div>
 
