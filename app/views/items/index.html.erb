@@ -84,7 +84,7 @@
       <% if @items.present? %>
         <% @items.each do |item| %>
           <li class='list'>
-            <%= link_to '#' do %>
+            <%= link_to item_path(item) do %>
               <div class='item-img-content' style="position:relative;">
                 <% if item.image.attached? %>
                   <%= image_tag item.image, alt: item.item_name, class: "item-img" %>
@@ -93,9 +93,9 @@
                 <% end %>
 
                 <%# if item.shopping_record.present? %>
-                  <%# <div class='sold-out' style="position:absolute; left:0; top:0;"> %>
-                  <%#   <span>Sold Out!!</span> %>
-                  <%# </div> %>
+                   <%# <div class='sold-out' style="position:absolute; left:0; top:0;"> %>
+                   <%#   <span>Sold Out!!</span> %>
+                   <%# </div> %>
                 <%# end %>
               </div>
 
@@ -141,5 +141,3 @@
 <% end %>
 
 <%= render "shared/footer" %>
-
-??
