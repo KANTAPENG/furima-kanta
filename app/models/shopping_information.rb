@@ -1,4 +1,4 @@
-#class ShoppingInformation < ApplicationRecord
+class ShoppingInformation < ApplicationRecord
 
-  #belongs_to :shopping_record
-#end
+  belongs_to :shopping_record
+end
