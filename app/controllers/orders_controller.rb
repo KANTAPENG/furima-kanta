@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_action :move_to_root
 
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @shopping_record_form = ShoppingRecordForm.new
   end
 
@@ -14,6 +15,7 @@ class OrdersController < ApplicationController
       @order_form.save
       redirect_to root_path
     else
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index, status: :unprocessable_entity
     end
   end
